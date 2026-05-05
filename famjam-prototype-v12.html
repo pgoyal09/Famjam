@@ -1781,24 +1781,24 @@ textarea:focus { border-color: var(--color-brand-primary); }
   animation: letter-appear 0.5s ease-out forwards;
   animation-delay: 0.1s; /* f and j appear immediately */
 }
-/* f (index 0): starts near center, moves left to final position */
+/* f (index 0): starts offset right (near j), moves left to final position */
 .splash-letter:nth-child(1) {
   animation: letter-f 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.1s;
 }
 @keyframes letter-f {
-  0%   { opacity: 0; transform: translateX(60px) scale(0.9); }
-  30%  { opacity: 1; transform: translateX(60px) scale(1); }
+  0%   { opacity: 0; transform: translateX(20px) scale(0.9); }
+  30%  { opacity: 1; transform: translateX(20px) scale(1); }
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
-/* j (index 3): starts near center, moves right to final position */
+/* j (index 3): starts offset left (near f), moves right to final position */
 .splash-letter:nth-child(4) {
   animation: letter-j 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.1s;
 }
 @keyframes letter-j {
-  0%   { opacity: 0; transform: translateX(-55px) scale(0.9); }
-  30%  { opacity: 1; transform: translateX(-55px) scale(1); }
+  0%   { opacity: 0; transform: translateX(-20px) scale(0.9); }
+  30%  { opacity: 1; transform: translateX(-20px) scale(1); }
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 /* Hidden letters (a, m, a, m) — fade in as f and j spread apart */
