@@ -1739,13 +1739,23 @@ textarea:focus { border-color: var(--color-brand-primary); }
 
 /* ====== v4 ADDITIONS ====== */
 
-/* ====== Splash screen — everything fires simultaneously ====== */
+/* ====== Splash screen — 3 beats: logo → morph → CTA ======
+   Beat 1 (0–0.6s):   "fj" pops in on white background
+   Beat 2 (0.6–1.4s): bg fills terracotta, "fj" morphs to "famjam" in white, tagline appears
+   Beat 3 (1.4–1.8s): Get Started slides up
+*/
 #screen-splash {
-  background: var(--color-brand-primary);
+  background: white;
   padding: 0;
   overflow: hidden;
   justify-content: center;
   align-items: center;
+  animation: splash-bg 0.6s ease-in-out forwards;
+  animation-delay: 0.6s; /* Beat 2 */
+}
+@keyframes splash-bg {
+  from { background: white; }
+  to   { background: var(--color-brand-primary); }
 }
 .splash-v4 {
   flex: 1;
@@ -1755,21 +1765,26 @@ textarea:focus { border-color: var(--color-brand-primary); }
   justify-content: center;
   align-items: center;
   position: relative;
-  animation: splash-everything 1.0s ease-out forwards;
-  opacity: 0;
 }
-@keyframes splash-everything {
-  from { opacity: 0; transform: scale(0.95); }
+/* Favicon box — pops in Beat 1, dissolves Beat 2 */
+.splash-favicon {
+  width: 96px; height: 96px;
+  background: white;
+  border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(31, 53, 64, 0.08);
+  opacity: 0;
+  transform-origin: center;
+  animation: favicon-pop 0.4s ease-out forwards, favicon-dissolve 0.5s ease-in-out forwards;
+  animation-delay: 0.1s, 0.7s;
+}
+@keyframes favicon-pop {
+  from { opacity: 0; transform: scale(0.6); }
   to   { opacity: 1; transform: scale(1); }
 }
-/* Favicon — hidden in final state (text replaces it) */
-.splash-favicon {
-  width: 360px; height: 140px;
-  background: transparent;
-  border-radius: 40px;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: none;
-  transform-origin: center;
+@keyframes favicon-dissolve {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.5); }
 }
 .splash-fj-stage {
   position: relative;
@@ -1788,37 +1803,61 @@ textarea:focus { border-color: var(--color-brand-primary); }
   position: absolute;
   white-space: nowrap;
 }
-/* "fj" — hidden, skip directly to final state */
+/* "fj" — Beat 1: pops in, Beat 2: fades out */
 .splash-fj-initial {
   font-size: 56px;
   opacity: 0;
+  color: var(--color-brand-primary);
+  animation: fj-pop 0.35s ease-out forwards, fj-out 0.4s ease-in forwards;
+  animation-delay: 0.15s, 0.6s;
 }
-/* "famjam" — visible immediately, white on brand bg */
+@keyframes fj-pop {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes fj-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.2); }
+}
+/* "famjam" — Beat 2: fades in white as bg fills */
 .splash-fj-final {
   font-size: 84px;
-  opacity: 1;
+  opacity: 0;
   color: white;
-  transform: scale(1);
+  animation: famjam-in 0.6s ease-out forwards;
+  animation-delay: 0.8s; /* slightly after bg starts filling */
 }
-/* Tagline — fades in with everything */
+@keyframes famjam-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+/* Tagline — Beat 2: appears with famjam */
 .splash-tagline-v4 {
   font-family: var(--font-product);
   font-weight: 500;
   font-size: 17px;
   color: white;
   margin-top: 32px;
-  opacity: 1;
+  opacity: 0;
   letter-spacing: 0.01em;
+  animation: fade-up 0.5s ease-out forwards;
+  animation-delay: 1.0s;
   text-align: center;
   max-width: 260px;
   line-height: 1.4;
 }
-/* CTA — visible immediately with everything */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* CTA — Beat 3: slides up last */
 .splash-cta-v4 {
   position: absolute;
   bottom: 40px; left: 24px; right: 24px;
   display: flex; flex-direction: column; gap: 8px;
-  opacity: 1;
+  opacity: 0;
+  animation: fade-up 0.5s ease-out forwards;
+  animation-delay: 1.4s;
 }
 .splash-cta-v4 .btn-primary {
   background: white;
