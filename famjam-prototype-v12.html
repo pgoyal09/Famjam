@@ -1785,11 +1785,11 @@ textarea:focus { border-color: var(--color-brand-primary); }
   animation-delay: 0s, 0.5s;
 }
 @keyframes letter-f-fade {
-  0%   { opacity: 0; transform: translateX(45px); }
-  100% { opacity: 1; transform: translateX(45px); }
+  0%   { opacity: 0; transform: translateX(0); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 @keyframes letter-f-slide {
-  0%   { opacity: 1; transform: translateX(45px); }
+  0%   { opacity: 1; transform: translateX(0); }
   100% { opacity: 1; transform: translateX(0); }
 }
 /* j (index 4): 0.5s fade in while holding position, then slides right */
@@ -1798,17 +1798,19 @@ textarea:focus { border-color: var(--color-brand-primary); }
   animation-delay: 0s, 0.5s;
 }
 @keyframes letter-j-fade {
-  0%   { opacity: 0; transform: translateX(-45px); }
-  100% { opacity: 1; transform: translateX(-45px); }
-}
-@keyframes letter-j-slide {
-  0%   { opacity: 1; transform: translateX(-45px); }
+  0%   { opacity: 0; transform: translateX(0); }
   100% { opacity: 1; transform: translateX(0); }
 }
-/* Hidden letters (a, m, a, m) — scale up from zero at their natural positions */
+@keyframes letter-j-slide {
+  0%   { opacity: 1; transform: translateX(0); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+/* Hidden letters (a, m, a, m) — zero size initially so f+j sit centered together */
 .splash-hidden {
+  display: inline-block;
+  width: 0;
   opacity: 0;
-  transform: scale(0);
+  overflow: hidden;
   animation: letter-reveal 0.72s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .splash-letter:nth-child(2) { animation-delay: 1.1s; }  /* first a */
@@ -1816,8 +1818,9 @@ textarea:focus { border-color: var(--color-brand-primary); }
 .splash-letter:nth-child(5) { animation-delay: 1.34s; }  /* second a */
 .splash-letter:nth-child(6) { animation-delay: 1.46s; }  /* second m */
 @keyframes letter-reveal {
-  0%   { opacity: 0; transform: scale(0); }
-  100% { opacity: 1; transform: scale(1); }
+  0%   { opacity: 0; width: 0; }
+  50%  { opacity: 0.7; }
+  100% { opacity: 1; width: 46px; }
 }
 /* Tagline — Beat 3 */
 .splash-tagline-v4 {
