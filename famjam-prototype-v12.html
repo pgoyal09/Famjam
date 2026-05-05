@@ -1779,22 +1779,30 @@ textarea:focus { border-color: var(--color-brand-primary); }
   display: inline-block;
   will-change: transform, opacity;
 }
-/* f (index 0): fades in 0.2s, then slides left to final position */
+/* f (index 0): slow 1s fade in while holding position, then slides left */
 .splash-letter:nth-child(1) {
-  animation: letter-f 1.44s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: letter-f-fade 1.0s ease-out forwards, letter-f-slide 1.44s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0s, 1.0s;
 }
-@keyframes letter-f {
+@keyframes letter-f-fade {
   0%   { opacity: 0; transform: translateX(55px); }
-  14%  { opacity: 1; transform: translateX(55px); }
+  100% { opacity: 1; transform: translateX(55px); }
+}
+@keyframes letter-f-slide {
+  0%   { opacity: 1; transform: translateX(55px); }
   100% { opacity: 1; transform: translateX(0); }
 }
-/* j (index 4): fades in 0.2s, then slides right to final position */
+/* j (index 4): slow 1s fade in while holding position, then slides right */
 .splash-letter:nth-child(4) {
-  animation: letter-j 1.44s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: letter-j-fade 1.0s ease-out forwards, letter-j-slide 1.44s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0s, 1.0s;
 }
-@keyframes letter-j {
+@keyframes letter-j-fade {
   0%   { opacity: 0; transform: translateX(-55px); }
-  14%  { opacity: 1; transform: translateX(-55px); }
+  100% { opacity: 1; transform: translateX(-55px); }
+}
+@keyframes letter-j-slide {
+  0%   { opacity: 1; transform: translateX(-55px); }
   100% { opacity: 1; transform: translateX(0); }
 }
 /* Hidden letters (a, m, a, m) — scale up from zero at their natural positions */
@@ -1803,10 +1811,10 @@ textarea:focus { border-color: var(--color-brand-primary); }
   transform: scale(0);
   animation: letter-reveal 0.72s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.splash-letter:nth-child(2) { animation-delay: 0.6s; }  /* first a */
-.splash-letter:nth-child(3) { animation-delay: 0.72s; }  /* first m */
-.splash-letter:nth-child(5) { animation-delay: 0.84s; }  /* second a */
-.splash-letter:nth-child(6) { animation-delay: 0.96s; }  /* second m */
+.splash-letter:nth-child(2) { animation-delay: 1.6s; }  /* first a */
+.splash-letter:nth-child(3) { animation-delay: 1.72s; }  /* first m */
+.splash-letter:nth-child(5) { animation-delay: 1.84s; }  /* second a */
+.splash-letter:nth-child(6) { animation-delay: 1.96s; }  /* second m */
 @keyframes letter-reveal {
   0%   { opacity: 0; transform: scale(0); }
   100% { opacity: 1; transform: scale(1); }
@@ -1821,7 +1829,7 @@ textarea:focus { border-color: var(--color-brand-primary); }
   opacity: 0;
   letter-spacing: 0.01em;
   animation: fade-up 0.6s ease-out forwards;
-  animation-delay: 1.92s;
+  animation-delay: 2.92s;
   text-align: center;
   max-width: 260px;
   line-height: 1.4;
@@ -1837,7 +1845,7 @@ textarea:focus { border-color: var(--color-brand-primary); }
   display: flex; flex-direction: column; gap: 8px;
   opacity: 0;
   animation: fade-up 0.6s ease-out forwards;
-  animation-delay: 2.16s;
+  animation-delay: 3.16s;
 }
 .splash-cta-v4 .btn-primary {
   background: white;
