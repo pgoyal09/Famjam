@@ -2242,7 +2242,13 @@ textarea:focus { border-color: var(--color-brand-primary); }
 
 /* ====== Isometric biome ====== */
 #screen-biome, #screen-biome-signup {
-  background: linear-gradient(160deg, #f0f2f5 0%, #e8eaee 50%, #f5f3f0 100%);
+  background:
+    linear-gradient(to bottom,
+      #BEE6F0 0%,
+      #D6E8F2 18%,
+      #E8ECF0 35%,
+      #F5F1E8 60%,
+      #FAE8D4 100%);
 }
 .biome-header-iso {
   position: sticky;
@@ -2277,176 +2283,22 @@ textarea:focus { border-color: var(--color-brand-primary); }
   line-height: 1.2;
 }
 .biome-world-iso {
-  padding: 20px 0 32px;
+  padding: 6px 0 32px;
 }
-/* Hub-spoke crystal tile layout */
-.hub-layout {
+.iso-island {
   position: relative;
-  width: 350px;
-  height: 480px;
-  margin: 0 auto;
+  margin: 0 -10px 0;
+  padding: 24px 10px 4px;
+  min-height: 200px;
 }
-.hub-tile {
+.iso-island .island-label {
   position: absolute;
-  width: 130px;
-  height: 130px;
-  transform: rotate(45deg);
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  overflow: visible;
-}
-.hub-tile:active {
-  transform: rotate(45deg) scale(0.95);
-}
-.hub-tile-inner {
-  transform: rotate(-45deg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-align: center;
-}
-.hub-tile-icons {
-  font-size: 22px;
-  display: flex;
-  gap: 4px;
-}
-.hub-tile-label {
-  font: 700 11px/1.2 var(--font-product);
-  color: rgba(0,0,0,0.75);
-  max-width: 90px;
-}
-/* Center hub */
-.hub-center {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  width: 110px;
-  height: 110px;
-  background: linear-gradient(135deg, rgba(200,230,210,0.6), rgba(160,210,180,0.4));
-  border: 1.5px solid rgba(120,190,150,0.4);
-  box-shadow: 0 8px 32px rgba(100,180,140,0.2), inset 0 1px 2px rgba(255,255,255,0.5);
-  backdrop-filter: blur(12px);
-  z-index: 10;
-}
-.hub-center:active {
-  transform: translate(-50%, -50%) rotate(45deg) scale(0.95);
-}
-.hub-center .hub-tile-icons { font-size: 28px; }
-.hub-center .hub-tile-label { font-size: 12px; font-weight: 800; color: rgba(40,100,60,0.85); }
-/* Top-left: Life & Lifestyle (purple) */
-.hub-tl {
-  left: 15px;
-  top: 60px;
-  background: linear-gradient(135deg, rgba(200,180,230,0.5), rgba(180,160,220,0.35));
-  border: 1.5px solid rgba(170,150,210,0.4);
-  box-shadow: 0 6px 24px rgba(160,140,200,0.2), inset 0 1px 2px rgba(255,255,255,0.4);
-  backdrop-filter: blur(12px);
-}
-/* Top-right: Career & Growth (blue) */
-.hub-tr {
-  right: 15px;
-  top: 60px;
-  background: linear-gradient(135deg, rgba(180,210,240,0.5), rgba(160,195,230,0.35));
-  border: 1.5px solid rgba(150,185,220,0.4);
-  box-shadow: 0 6px 24px rgba(140,175,210,0.2), inset 0 1px 2px rgba(255,255,255,0.4);
-  backdrop-filter: blur(12px);
-}
-/* Bottom-left: Financial Health (green) */
-.hub-bl {
-  left: 15px;
-  bottom: 60px;
-  background: linear-gradient(135deg, rgba(180,220,190,0.5), rgba(160,210,175,0.35));
-  border: 1.5px solid rgba(140,195,155,0.4);
-  box-shadow: 0 6px 24px rgba(130,185,145,0.2), inset 0 1px 2px rgba(255,255,255,0.4);
-  backdrop-filter: blur(12px);
-}
-/* Bottom-right: Home & Independence (coral/red) */
-.hub-br {
-  right: 15px;
-  bottom: 60px;
-  background: linear-gradient(135deg, rgba(240,190,180,0.5), rgba(230,175,165,0.35));
-  border: 1.5px solid rgba(220,160,150,0.4);
-  box-shadow: 0 6px 24px rgba(210,150,140,0.2), inset 0 1px 2px rgba(255,255,255,0.4);
-  backdrop-filter: blur(12px);
-}
-/* Bottom center: Custom Goals (gray, dashed) */
-.hub-custom {
-  left: 50%;
-  bottom: -10px;
-  transform: translate(-50%, 0) rotate(45deg);
-  width: 90px;
-  height: 90px;
-  background: rgba(220,220,225,0.3);
-  border: 1.5px dashed rgba(180,180,190,0.6);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  top: 12px; left: 20px;
+  z-index: 30;
+  padding: 5px 12px;
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(8px);
-}
-.hub-custom:active {
-  transform: translate(-50%, 0) rotate(45deg) scale(0.95);
-}
-.hub-custom .hub-tile-label { font-size: 10px; color: rgba(0,0,0,0.5); }
-/* Connector lines */
-.hub-connectors {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 5;
-}
-/* Active goal glow */
-.hub-tile.active {
-  box-shadow: 0 6px 24px rgba(217,164,65,0.35), 0 0 20px rgba(217,164,65,0.2), inset 0 1px 2px rgba(255,255,255,0.4);
-}
-/* Score badge on active tile */
-.hub-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  transform: rotate(-45deg);
-  background: var(--color-brand-primary);
-  color: white;
-  font: 700 10px var(--font-product);
-  padding: 3px 8px;
-  border-radius: 10px;
-  z-index: 20;
-}
-.hub-badge-progress {
-  position: absolute;
-  bottom: -8px;
-  left: -8px;
-  transform: rotate(-45deg);
-  background: white;
-  color: var(--color-neutral-ink);
-  font: 700 9px var(--font-product);
-  padding: 3px 7px;
-  border-radius: 10px;
-  border: 1px solid var(--color-neutral-ink);
-  z-index: 20;
-}
-/* 3D depth effect */
-.hub-tile::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 3px;
-  right: -3px;
-  top: 6px;
-  border-radius: 18px;
-  z-index: -1;
-}
-.hub-tl::after { background: rgba(170,150,210,0.2); }
-.hub-tr::after { background: rgba(150,185,220,0.2); }
-.hub-bl::after { background: rgba(140,195,155,0.2); }
-.hub-br::after { background: rgba(220,160,150,0.2); }
-.hub-center::after { background: rgba(120,190,150,0.15); }
-.hub-tile-wrap {
-  /* legacy placeholder */
+  border-radius: var(--radius-full);
   font: 700 12px var(--font-product);
   color: var(--color-neutral-ink);
   box-shadow: 0 2px 10px rgba(31, 53, 64, 0.1);
@@ -3495,62 +3347,166 @@ textarea:focus { border-color: var(--color-brand-primary); }
         </div>
 
         <div class="biome-world-iso">
-<div class="hub-layout">
-          <!-- Connector lines SVG -->
-          <svg class="hub-connectors" viewBox="0 0 350 480">
-            <line x1="105" y1="165" x2="160" y2="220" stroke="rgba(170,150,210,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
-            <line x1="245" y1="165" x2="190" y2="220" stroke="rgba(150,185,220,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
-            <line x1="105" y1="335" x2="160" y2="280" stroke="rgba(140,195,155,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
-            <line x1="245" y1="335" x2="190" y2="280" stroke="rgba(220,160,150,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
-            <line x1="175" y1="290" x2="175" y2="375" stroke="rgba(180,180,190,0.35)" stroke-width="1.5" stroke-dasharray="4 4"/>
-          </svg>
-
-          <!-- Center: Family Hub -->
-          <div class="hub-tile hub-center" onclick="navigate('alignment')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">👨‍👩‍👧</div>
-              <div class="hub-tile-label">Family Hub</div>
+          <!-- Life & Lifestyle -->
+          <div class="iso-island">
+            <div class="island-label"><span class="emj">🧳</span> Life &amp; Lifestyle</div>
+            <div class="iso-stage">
+              <svg viewBox="0 0 390 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M 50 130 L 195 85 L 340 130 L 195 175 Z" fill="#B8D9B8"/>
+                <path d="M 50 130 L 195 175 L 195 210 L 50 165 Z" fill="#8AB888"/>
+                <path d="M 195 175 L 340 130 L 340 165 L 195 210 Z" fill="#6FA06F"/>
+                <g class="iso-building" onmousedown="lpStart(event,'Vacation')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Vacation')" ontouchend="lpEnd()" onclick="bldTap('Vacation')">
+                  <ellipse class="hotspot-bg" cx="90" cy="130" rx="38" ry="16" fill="#FFFFFF"/>
+                  <image href="assets/vacation.png" x="52" y="80" width="76" height="76" preserveAspectRatio="xMidYMid meet"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Wedding')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Wedding')" ontouchend="lpEnd()" onclick="bldTap('Wedding')">
+                  <ellipse class="hotspot-bg" cx="195" cy="135" rx="38" ry="16" fill="#FFFFFF"/>
+                  <image href="assets/wedding.png" x="157" y="82" width="76" height="76" preserveAspectRatio="xMidYMid meet"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Medical')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Medical')" ontouchend="lpEnd()" onclick="bldTap('Medical')">
+                  <ellipse class="hotspot-bg" cx="300" cy="130" rx="28" ry="12" fill="#FFFFFF"/>
+                  <path d="M 280 110 L 300 103 L 320 110 L 300 117 Z" fill="white"/>
+                  <path d="M 280 110 L 300 117 L 300 135 L 280 128 Z" fill="#E5ECEE"/>
+                  <path d="M 300 117 L 320 110 L 320 128 L 300 135 Z" fill="#C9D6DC"/>
+                  <rect x="293" y="121" width="14" height="4" fill="#C25450"/>
+                  <rect x="298" y="116" width="4" height="14" fill="#C25450"/>
+                </g>
+                <ellipse cx="70" cy="45" rx="18" ry="7" fill="white" opacity="0.9"/>
+                <ellipse cx="320" cy="55" rx="20" ry="6" fill="white" opacity="0.85"/>
+              </svg>
             </div>
           </div>
 
-          <!-- Top-left: Life & Lifestyle -->
-          <div class="hub-tile hub-tl" onclick="bldTap('Vacation')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">🧳💍➕</div>
-              <div class="hub-tile-label">Life &amp; Lifestyle</div>
+          <!-- Career & Growth -->
+          <div class="iso-island">
+            <div class="island-label"><span class="emj">💼</span> Career &amp; Growth</div>
+            <div class="iso-stage">
+              <svg viewBox="0 0 390 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M 50 130 L 195 85 L 340 130 L 195 175 Z" fill="#C9D6DC"/>
+                <path d="M 50 130 L 195 175 L 195 210 L 50 165 Z" fill="#A4B6BD"/>
+                <path d="M 195 175 L 340 130 L 340 165 L 195 210 Z" fill="#8B9FA8"/>
+                <g class="iso-building" onmousedown="lpStart(event,'HigherEducation')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'HigherEducation')" ontouchend="lpEnd()" onclick="bldTap('HigherEducation')">
+                  <ellipse class="hotspot-bg" cx="90" cy="130" rx="32" ry="14" fill="#FFFFFF"/>
+                  <path d="M 70 115 L 90 108 L 110 115 L 90 122 Z" fill="white"/>
+                  <path d="M 70 115 L 90 122 L 90 140 L 70 133 Z" fill="#E5ECEE"/>
+                  <path d="M 90 122 L 110 115 L 110 133 L 90 140 Z" fill="#C9D6DC"/>
+                  <rect x="74" y="120" width="2" height="18" fill="white"/>
+                  <rect x="80" y="122" width="2" height="17" fill="white"/>
+                  <rect x="86" y="123" width="2" height="17" fill="white"/>
+                  <path d="M 70 115 L 90 105 L 110 115 L 90 125 Z" fill="#5BA8B8"/>
+                  <rect x="89" y="90" width="1.5" height="15" fill="#1F3540"/>
+                  <path d="M 91 92 L 97 95 L 91 97 Z" fill="#C25450"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Career')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Career')" ontouchend="lpEnd()" onclick="bldTap('Career')">
+                  <ellipse class="hotspot-bg" cx="195" cy="135" rx="26" ry="12" fill="#FFFFFF"/>
+                  <path d="M 180 115 L 195 109 L 210 115 L 195 121 Z" fill="#D9A441"/>
+                  <path d="M 180 115 L 195 121 L 195 142 L 180 136 Z" fill="#A87E28"/>
+                  <path d="M 195 121 L 210 115 L 210 136 L 195 142 Z" fill="#B88F33"/>
+                  <rect x="183" y="124" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="189" y="125" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="183" y="130" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="189" y="131" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="198" y="125" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="204" y="123" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="198" y="131" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="204" y="129" width="3" height="3" fill="#5BA8B8"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Business')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Business')" ontouchend="lpEnd()" onclick="bldTap('Business')">
+                  <ellipse class="hotspot-bg" cx="300" cy="130" rx="28" ry="12" fill="#FFFFFF"/>
+                  <path d="M 282 115 L 300 109 L 318 115 L 300 121 Z" fill="#9B8CC8"/>
+                  <path d="M 282 115 L 300 121 L 300 138 L 282 132 Z" fill="#7A6BA0"/>
+                  <path d="M 300 121 L 318 115 L 318 132 L 300 138 Z" fill="#897CB2"/>
+                  <path d="M 298 99 Q 300 92 302 99 L 302 110 L 298 110 Z" fill="#C25450"/>
+                  <circle cx="300" cy="104" r="1.5" fill="white"/>
+                  <path d="M 298 112 L 300 118 L 302 112 Z" fill="#D9A441"/>
+                </g>
+                <ellipse cx="55" cy="40" rx="20" ry="6" fill="white" opacity="0.85"/>
+                <ellipse cx="310" cy="50" rx="22" ry="7" fill="white" opacity="0.9"/>
+              </svg>
             </div>
           </div>
 
-          <!-- Top-right: Career & Growth (ACTIVE) -->
-          <div class="hub-tile hub-tr active" onclick="navigate('path')">
-            <span class="hub-badge">64</span>
-            <span class="hub-badge-progress">2/6</span>
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">🎓💼🚀</div>
-              <div class="hub-tile-label">Career &amp; Growth</div>
+          <!-- Home & Independence -->
+          <div class="iso-island">
+            <div class="island-label"><span class="emj">🏠</span> Home &amp; Independence</div>
+            <div class="iso-stage">
+              <svg viewBox="0 0 390 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M 50 130 L 195 85 L 340 130 L 195 175 Z" fill="#D9D2C5"/>
+                <path d="M 50 130 L 195 175 L 195 210 L 50 165 Z" fill="#B8AE9C"/>
+                <path d="M 195 175 L 340 130 L 340 165 L 195 210 Z" fill="#9D9280"/>
+                <g class="iso-building" onmousedown="lpStart(event,'Home')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Home')" ontouchend="lpEnd()" onclick="bldTap('Home')">
+                  <ellipse class="hotspot-bg" cx="90" cy="130" rx="30" ry="12" fill="#FFFFFF"/>
+                  <path d="M 72 120 L 90 114 L 108 120 L 90 126 Z" fill="#F2A679"/>
+                  <path d="M 72 120 L 90 126 L 90 140 L 72 134 Z" fill="#D4814F"/>
+                  <path d="M 90 126 L 108 120 L 108 134 L 90 140 Z" fill="#DE8D5B"/>
+                  <path d="M 72 120 L 90 108 L 108 120 L 90 114 Z" fill="#C25450"/>
+                  <rect x="86" y="130" width="4" height="10" fill="#8B5E3C"/>
+                  <rect x="98" y="126" width="4" height="4" fill="#5BA8B8"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Migration')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Migration')" ontouchend="lpEnd()" onclick="bldTap('Migration')">
+                  <ellipse class="hotspot-bg" cx="195" cy="135" rx="28" ry="12" fill="#FFFFFF"/>
+                  <path d="M 180 118 L 195 112 L 210 118 L 195 124 Z" fill="#C56F35"/>
+                  <path d="M 180 118 L 195 124 L 195 138 L 180 132 Z" fill="#A85A28"/>
+                  <path d="M 195 124 L 210 118 L 210 132 L 195 138 Z" fill="#B36530"/>
+                  <path d="M 190 110 Q 195 105 200 110" stroke="#1F3540" stroke-width="2" fill="none"/>
+                  <path d="M 170 95 Q 190 90 210 95" stroke="white" stroke-width="1" stroke-dasharray="2 2" fill="none" opacity="0.8"/>
+                  <path d="M 215 93 L 220 90 L 218 96 Z" fill="#5BA8B8"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Vehicle')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Vehicle')" ontouchend="lpEnd()" onclick="bldTap('Vehicle')">
+                  <ellipse class="hotspot-bg" cx="300" cy="130" rx="30" ry="12" fill="#FFFFFF"/>
+                  <path d="M 282 125 L 300 121 L 318 125 L 300 129 Z" fill="#5BA8B8"/>
+                  <path d="M 282 125 L 300 129 L 300 134 L 282 130 Z" fill="#3E8694"/>
+                  <path d="M 300 129 L 318 125 L 318 130 L 300 134 Z" fill="#4A94A3"/>
+                  <path d="M 288 121 L 300 118 L 312 121 L 300 124 Z" fill="#8BC2CE"/>
+                  <ellipse cx="288" cy="133" rx="3" ry="1.5" fill="#1F3540"/>
+                  <ellipse cx="312" cy="133" rx="3" ry="1.5" fill="#1F3540"/>
+                </g>
+                <ellipse cx="60" cy="42" rx="18" ry="6" fill="white" opacity="0.88"/>
+                <ellipse cx="315" cy="52" rx="22" ry="7" fill="white" opacity="0.92"/>
+              </svg>
             </div>
           </div>
 
-          <!-- Bottom-left: Financial Health -->
-          <div class="hub-tile hub-bl" onclick="bldTap('Emergency')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">🛡️🐷💳</div>
-              <div class="hub-tile-label">Financial Health</div>
-            </div>
-          </div>
-
-          <!-- Bottom-right: Home & Independence -->
-          <div class="hub-tile hub-br" onclick="bldTap('Home')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">🏠📍🚗</div>
-              <div class="hub-tile-label">Home &amp; Independence</div>
-            </div>
-          </div>
-
-          <!-- Bottom center: Custom Goals -->
-          <div class="hub-tile hub-custom" onclick="showToast('Custom goals coming soon!')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-label">Custom Goals</div>
+          <!-- Financial Health -->
+          <div class="iso-island">
+            <div class="island-label"><span class="emj">💰</span> Financial Health</div>
+            <div class="iso-stage">
+              <svg viewBox="0 0 390 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M 50 130 L 195 85 L 340 130 L 195 175 Z" fill="#F5E6C8"/>
+                <path d="M 50 130 L 195 175 L 195 210 L 50 165 Z" fill="#D9C690"/>
+                <path d="M 195 175 L 340 130 L 340 165 L 195 210 Z" fill="#C2AF78"/>
+                <g class="iso-building" onmousedown="lpStart(event,'Emergency')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Emergency')" ontouchend="lpEnd()" onclick="bldTap('Emergency')">
+                  <ellipse class="hotspot-bg" cx="90" cy="130" rx="28" ry="12" fill="#FFFFFF"/>
+                  <ellipse cx="90" cy="128" rx="14" ry="9" fill="#C25450"/>
+                  <ellipse cx="90" cy="128" rx="6" ry="4" fill="white"/>
+                  <path d="M 80 126 L 84 130 M 96 126 L 100 130 M 88 120 L 92 124 M 88 132 L 92 136" stroke="white" stroke-width="1.5"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Debt')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Debt')" ontouchend="lpEnd()" onclick="bldTap('Debt')">
+                  <ellipse class="hotspot-bg" cx="195" cy="135" rx="26" ry="12" fill="#FFFFFF"/>
+                  <ellipse cx="182" cy="132" rx="8" ry="3" fill="#D9A441"/>
+                  <ellipse cx="182" cy="128" rx="8" ry="3" fill="#E5B856"/>
+                  <ellipse cx="195" cy="136" rx="8" ry="3" fill="#D9A441"/>
+                  <ellipse cx="195" cy="132" rx="8" ry="3" fill="#E5B856"/>
+                  <ellipse cx="195" cy="128" rx="8" ry="3" fill="#F0CE72"/>
+                  <ellipse cx="208" cy="134" rx="8" ry="3" fill="#D9A441"/>
+                  <path d="M 195 108 L 195 120 M 190 115 L 195 120 L 200 115" stroke="#C25450" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Savings')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Savings')" ontouchend="lpEnd()" onclick="bldTap('Savings')">
+                  <ellipse class="hotspot-bg" cx="300" cy="130" rx="28" ry="12" fill="#FFFFFF"/>
+                  <path d="M 285 130 L 288 128 L 291 130 L 288 132 Z" fill="#5C9070"/>
+                  <path d="M 285 130 L 288 132 L 288 138 L 285 136 Z" fill="#3D6B4C"/>
+                  <path d="M 288 132 L 291 130 L 291 136 L 288 138 Z" fill="#4A7D5B"/>
+                  <path d="M 295 127 L 298 125 L 301 127 L 298 129 Z" fill="#65B57A"/>
+                  <path d="M 295 127 L 298 129 L 298 138 L 295 136 Z" fill="#3D6B4C"/>
+                  <path d="M 298 129 L 301 127 L 301 136 L 298 138 Z" fill="#4A7D5B"/>
+                  <path d="M 305 122 L 308 120 L 311 122 L 308 124 Z" fill="#7BCC90"/>
+                  <path d="M 305 122 L 308 124 L 308 138 L 305 136 Z" fill="#3D6B4C"/>
+                  <path d="M 308 124 L 311 122 L 311 136 L 308 138 Z" fill="#4A7D5B"/>
+                  <path d="M 295 112 L 310 105 M 306 105 L 310 105 L 310 109" stroke="#5C9070" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                </g>
+                <ellipse cx="70" cy="48" rx="20" ry="6" fill="white" opacity="0.85"/>
+                <ellipse cx="300" cy="42" rx="18" ry="5" fill="white" opacity="0.88"/>
+              </svg>
             </div>
           </div>
         </div>
@@ -4338,62 +4294,175 @@ textarea:focus { border-color: var(--color-brand-primary); }
         </div>
 
         <div class="biome-world-iso">
-<div class="hub-layout">
-          <!-- Connector lines SVG -->
-          <svg class="hub-connectors" viewBox="0 0 350 480">
-            <line x1="105" y1="165" x2="160" y2="220" stroke="rgba(170,150,210,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
-            <line x1="245" y1="165" x2="190" y2="220" stroke="rgba(150,185,220,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
-            <line x1="105" y1="335" x2="160" y2="280" stroke="rgba(140,195,155,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
-            <line x1="245" y1="335" x2="190" y2="280" stroke="rgba(220,160,150,0.4)" stroke-width="2" stroke-dasharray="6 4"/>
-            <line x1="175" y1="290" x2="175" y2="375" stroke="rgba(180,180,190,0.35)" stroke-width="1.5" stroke-dasharray="4 4"/>
-          </svg>
-
-          <!-- Center: Family Hub -->
-          <div class="hub-tile hub-center" onclick="navigate('alignment')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">👨‍👩‍👧</div>
-              <div class="hub-tile-label">Family Hub</div>
+          <!-- Life & Lifestyle -->
+          <div class="iso-island">
+            <div class="island-label"><span class="emj">🧳</span> Life &amp; Lifestyle</div>
+            <div class="iso-stage">
+              <svg viewBox="0 0 390 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M 50 130 L 195 85 L 340 130 L 195 175 Z" fill="#B8D9B8"/>
+                <path d="M 50 130 L 195 175 L 195 210 L 50 165 Z" fill="#8AB888"/>
+                <path d="M 195 175 L 340 130 L 340 165 L 195 210 Z" fill="#6FA06F"/>
+                <g class="iso-building" onmousedown="lpStart(event,'Vacation')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Vacation')" ontouchend="lpEnd()" onclick="bldTap('Vacation')">
+                  <ellipse class="hotspot-bg" cx="90" cy="130" rx="38" ry="16" fill="#FFFFFF"/>
+                  <image href="assets/vacation.png" x="52" y="80" width="76" height="76" preserveAspectRatio="xMidYMid meet"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Wedding')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Wedding')" ontouchend="lpEnd()" onclick="bldTap('Wedding')">
+                  <ellipse class="hotspot-bg" cx="195" cy="135" rx="38" ry="16" fill="#FFFFFF"/>
+                  <image href="assets/wedding.png" x="157" y="82" width="76" height="76" preserveAspectRatio="xMidYMid meet"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Medical')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Medical')" ontouchend="lpEnd()" onclick="bldTap('Medical')">
+                  <ellipse class="hotspot-bg" cx="300" cy="130" rx="28" ry="12" fill="#FFFFFF"/>
+                  <path d="M 280 110 L 300 103 L 320 110 L 300 117 Z" fill="white"/>
+                  <path d="M 280 110 L 300 117 L 300 135 L 280 128 Z" fill="#E5ECEE"/>
+                  <path d="M 300 117 L 320 110 L 320 128 L 300 135 Z" fill="#C9D6DC"/>
+                  <rect x="293" y="121" width="14" height="4" fill="#C25450"/>
+                  <rect x="298" y="116" width="4" height="14" fill="#C25450"/>
+                </g>
+                <ellipse cx="70" cy="45" rx="18" ry="7" fill="white" opacity="0.9"/>
+                <ellipse cx="320" cy="55" rx="20" ry="6" fill="white" opacity="0.85"/>
+              </svg>
             </div>
           </div>
 
-          <!-- Top-left: Life & Lifestyle -->
-          <div class="hub-tile hub-tl" onclick="bldTap('Vacation')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">🧳💍➕</div>
-              <div class="hub-tile-label">Life &amp; Lifestyle</div>
+          <!-- Career & Growth with active Higher Ed -->
+          <div class="iso-island">
+            <div class="island-label"><span class="emj">💼</span> Career &amp; Growth <span class="count">Active</span></div>
+            <div class="iso-stage">
+              <svg viewBox="0 0 390 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M 50 130 L 195 85 L 340 130 L 195 175 Z" fill="#C9D6DC"/>
+                <path d="M 50 130 L 195 175 L 195 210 L 50 165 Z" fill="#A4B6BD"/>
+                <path d="M 195 175 L 340 130 L 340 165 L 195 210 Z" fill="#8B9FA8"/>
+
+                <!-- Higher Ed — ACTIVE -->
+                <g class="iso-building active" onmousedown="lpStart(event,'HigherEducation')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'HigherEducation')" ontouchend="lpEnd()" onclick="navigate('path')">
+                  <ellipse class="hotspot-bg" cx="90" cy="130" rx="34" ry="15" fill="#D9A441" opacity="0.35"/>
+                  <path d="M 70 115 L 90 108 L 110 115 L 90 122 Z" fill="white"/>
+                  <path d="M 70 115 L 90 122 L 90 140 L 70 133 Z" fill="#E5ECEE"/>
+                  <path d="M 90 122 L 110 115 L 110 133 L 90 140 Z" fill="#C9D6DC"/>
+                  <rect x="74" y="120" width="2" height="18" fill="white"/>
+                  <rect x="80" y="122" width="2" height="17" fill="white"/>
+                  <rect x="86" y="123" width="2" height="17" fill="white"/>
+                  <path d="M 70 115 L 90 105 L 110 115 L 90 125 Z" fill="#5BA8B8"/>
+                  <rect x="89" y="90" width="1.5" height="15" fill="#1F3540"/>
+                  <path d="M 91 92 L 97 95 L 91 97 Z" fill="#C25450"/>
+                  <!-- score badge -->
+                  <rect x="108" y="104" width="32" height="14" rx="7" fill="#C56F35"/>
+                  <text x="124" y="114" text-anchor="middle" fill="white" font-size="9" font-weight="700">64</text>
+                  <!-- counter badge -->
+                  <rect x="45" y="125" width="30" height="14" rx="7" fill="white" stroke="#1F3540" stroke-width="1"/>
+                  <text x="60" y="135" text-anchor="middle" fill="#1F3540" font-size="9" font-weight="700">2/6</text>
+                </g>
+
+                <g class="iso-building" onmousedown="lpStart(event,'Career')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Career')" ontouchend="lpEnd()" onclick="bldTap('Career')">
+                  <ellipse class="hotspot-bg" cx="195" cy="135" rx="26" ry="12" fill="#FFFFFF"/>
+                  <path d="M 180 115 L 195 109 L 210 115 L 195 121 Z" fill="#D9A441"/>
+                  <path d="M 180 115 L 195 121 L 195 142 L 180 136 Z" fill="#A87E28"/>
+                  <path d="M 195 121 L 210 115 L 210 136 L 195 142 Z" fill="#B88F33"/>
+                  <rect x="183" y="124" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="189" y="125" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="183" y="130" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="189" y="131" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="198" y="125" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="204" y="123" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="198" y="131" width="3" height="3" fill="#5BA8B8"/>
+                  <rect x="204" y="129" width="3" height="3" fill="#5BA8B8"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Business')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Business')" ontouchend="lpEnd()" onclick="bldTap('Business')">
+                  <ellipse class="hotspot-bg" cx="300" cy="130" rx="28" ry="12" fill="#FFFFFF"/>
+                  <path d="M 282 115 L 300 109 L 318 115 L 300 121 Z" fill="#9B8CC8"/>
+                  <path d="M 282 115 L 300 121 L 300 138 L 282 132 Z" fill="#7A6BA0"/>
+                  <path d="M 300 121 L 318 115 L 318 132 L 300 138 Z" fill="#897CB2"/>
+                  <path d="M 298 99 Q 300 92 302 99 L 302 110 L 298 110 Z" fill="#C25450"/>
+                  <circle cx="300" cy="104" r="1.5" fill="white"/>
+                  <path d="M 298 112 L 300 118 L 302 112 Z" fill="#D9A441"/>
+                </g>
+                <ellipse cx="55" cy="40" rx="20" ry="6" fill="white" opacity="0.85"/>
+                <ellipse cx="310" cy="50" rx="22" ry="7" fill="white" opacity="0.9"/>
+              </svg>
             </div>
           </div>
 
-          <!-- Top-right: Career & Growth (ACTIVE) -->
-          <div class="hub-tile hub-tr active" onclick="navigate('path')">
-            <span class="hub-badge">64</span>
-            <span class="hub-badge-progress">2/6</span>
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">🎓💼🚀</div>
-              <div class="hub-tile-label">Career &amp; Growth</div>
+          <!-- Home & Independence -->
+          <div class="iso-island">
+            <div class="island-label"><span class="emj">🏠</span> Home &amp; Independence</div>
+            <div class="iso-stage">
+              <svg viewBox="0 0 390 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M 50 130 L 195 85 L 340 130 L 195 175 Z" fill="#D9D2C5"/>
+                <path d="M 50 130 L 195 175 L 195 210 L 50 165 Z" fill="#B8AE9C"/>
+                <path d="M 195 175 L 340 130 L 340 165 L 195 210 Z" fill="#9D9280"/>
+                <g class="iso-building" onmousedown="lpStart(event,'Home')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Home')" ontouchend="lpEnd()" onclick="bldTap('Home')">
+                  <ellipse class="hotspot-bg" cx="90" cy="130" rx="30" ry="12" fill="#FFFFFF"/>
+                  <path d="M 72 120 L 90 114 L 108 120 L 90 126 Z" fill="#F2A679"/>
+                  <path d="M 72 120 L 90 126 L 90 140 L 72 134 Z" fill="#D4814F"/>
+                  <path d="M 90 126 L 108 120 L 108 134 L 90 140 Z" fill="#DE8D5B"/>
+                  <path d="M 72 120 L 90 108 L 108 120 L 90 114 Z" fill="#C25450"/>
+                  <rect x="86" y="130" width="4" height="10" fill="#8B5E3C"/>
+                  <rect x="98" y="126" width="4" height="4" fill="#5BA8B8"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Migration')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Migration')" ontouchend="lpEnd()" onclick="bldTap('Migration')">
+                  <ellipse class="hotspot-bg" cx="195" cy="135" rx="28" ry="12" fill="#FFFFFF"/>
+                  <path d="M 180 118 L 195 112 L 210 118 L 195 124 Z" fill="#C56F35"/>
+                  <path d="M 180 118 L 195 124 L 195 138 L 180 132 Z" fill="#A85A28"/>
+                  <path d="M 195 124 L 210 118 L 210 132 L 195 138 Z" fill="#B36530"/>
+                  <path d="M 190 110 Q 195 105 200 110" stroke="#1F3540" stroke-width="2" fill="none"/>
+                  <path d="M 170 95 Q 190 90 210 95" stroke="white" stroke-width="1" stroke-dasharray="2 2" fill="none" opacity="0.8"/>
+                  <path d="M 215 93 L 220 90 L 218 96 Z" fill="#5BA8B8"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Vehicle')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Vehicle')" ontouchend="lpEnd()" onclick="bldTap('Vehicle')">
+                  <ellipse class="hotspot-bg" cx="300" cy="130" rx="30" ry="12" fill="#FFFFFF"/>
+                  <path d="M 282 125 L 300 121 L 318 125 L 300 129 Z" fill="#5BA8B8"/>
+                  <path d="M 282 125 L 300 129 L 300 134 L 282 130 Z" fill="#3E8694"/>
+                  <path d="M 300 129 L 318 125 L 318 130 L 300 134 Z" fill="#4A94A3"/>
+                  <path d="M 288 121 L 300 118 L 312 121 L 300 124 Z" fill="#8BC2CE"/>
+                  <ellipse cx="288" cy="133" rx="3" ry="1.5" fill="#1F3540"/>
+                  <ellipse cx="312" cy="133" rx="3" ry="1.5" fill="#1F3540"/>
+                </g>
+                <ellipse cx="60" cy="42" rx="18" ry="6" fill="white" opacity="0.88"/>
+                <ellipse cx="315" cy="52" rx="22" ry="7" fill="white" opacity="0.92"/>
+              </svg>
             </div>
           </div>
 
-          <!-- Bottom-left: Financial Health -->
-          <div class="hub-tile hub-bl" onclick="bldTap('Emergency')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">🛡️🐷💳</div>
-              <div class="hub-tile-label">Financial Health</div>
-            </div>
-          </div>
-
-          <!-- Bottom-right: Home & Independence -->
-          <div class="hub-tile hub-br" onclick="bldTap('Home')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-icons">🏠📍🚗</div>
-              <div class="hub-tile-label">Home &amp; Independence</div>
-            </div>
-          </div>
-
-          <!-- Bottom center: Custom Goals -->
-          <div class="hub-tile hub-custom" onclick="showToast('Custom goals coming soon!')">
-            <div class="hub-tile-inner">
-              <div class="hub-tile-label">Custom Goals</div>
+          <!-- Financial Health -->
+          <div class="iso-island">
+            <div class="island-label"><span class="emj">💰</span> Financial Health</div>
+            <div class="iso-stage">
+              <svg viewBox="0 0 390 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M 50 130 L 195 85 L 340 130 L 195 175 Z" fill="#F5E6C8"/>
+                <path d="M 50 130 L 195 175 L 195 210 L 50 165 Z" fill="#D9C690"/>
+                <path d="M 195 175 L 340 130 L 340 165 L 195 210 Z" fill="#C2AF78"/>
+                <g class="iso-building" onmousedown="lpStart(event,'Emergency')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Emergency')" ontouchend="lpEnd()" onclick="bldTap('Emergency')">
+                  <ellipse class="hotspot-bg" cx="90" cy="130" rx="28" ry="12" fill="#FFFFFF"/>
+                  <ellipse cx="90" cy="128" rx="14" ry="9" fill="#C25450"/>
+                  <ellipse cx="90" cy="128" rx="6" ry="4" fill="white"/>
+                  <path d="M 80 126 L 84 130 M 96 126 L 100 130 M 88 120 L 92 124 M 88 132 L 92 136" stroke="white" stroke-width="1.5"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Debt')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Debt')" ontouchend="lpEnd()" onclick="bldTap('Debt')">
+                  <ellipse class="hotspot-bg" cx="195" cy="135" rx="26" ry="12" fill="#FFFFFF"/>
+                  <ellipse cx="182" cy="132" rx="8" ry="3" fill="#D9A441"/>
+                  <ellipse cx="182" cy="128" rx="8" ry="3" fill="#E5B856"/>
+                  <ellipse cx="195" cy="136" rx="8" ry="3" fill="#D9A441"/>
+                  <ellipse cx="195" cy="132" rx="8" ry="3" fill="#E5B856"/>
+                  <ellipse cx="195" cy="128" rx="8" ry="3" fill="#F0CE72"/>
+                  <ellipse cx="208" cy="134" rx="8" ry="3" fill="#D9A441"/>
+                  <path d="M 195 108 L 195 120 M 190 115 L 195 120 L 200 115" stroke="#C25450" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </g>
+                <g class="iso-building" onmousedown="lpStart(event,'Savings')" onmouseup="lpEnd()" onmouseleave="lpEnd()" ontouchstart="lpStart(event,'Savings')" ontouchend="lpEnd()" onclick="bldTap('Savings')">
+                  <ellipse class="hotspot-bg" cx="300" cy="130" rx="28" ry="12" fill="#FFFFFF"/>
+                  <path d="M 285 130 L 288 128 L 291 130 L 288 132 Z" fill="#5C9070"/>
+                  <path d="M 285 130 L 288 132 L 288 138 L 285 136 Z" fill="#3D6B4C"/>
+                  <path d="M 288 132 L 291 130 L 291 136 L 288 138 Z" fill="#4A7D5B"/>
+                  <path d="M 295 127 L 298 125 L 301 127 L 298 129 Z" fill="#65B57A"/>
+                  <path d="M 295 127 L 298 129 L 298 138 L 295 136 Z" fill="#3D6B4C"/>
+                  <path d="M 298 129 L 301 127 L 301 136 L 298 138 Z" fill="#4A7D5B"/>
+                  <path d="M 305 122 L 308 120 L 311 122 L 308 124 Z" fill="#7BCC90"/>
+                  <path d="M 305 122 L 308 124 L 308 138 L 305 136 Z" fill="#3D6B4C"/>
+                  <path d="M 308 124 L 311 122 L 311 136 L 308 138 Z" fill="#4A7D5B"/>
+                  <path d="M 295 112 L 310 105 M 306 105 L 310 105 L 310 109" stroke="#5C9070" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                </g>
+                <ellipse cx="70" cy="48" rx="20" ry="6" fill="white" opacity="0.85"/>
+                <ellipse cx="300" cy="42" rx="18" ry="5" fill="white" opacity="0.88"/>
+              </svg>
             </div>
           </div>
         </div>
