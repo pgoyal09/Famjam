@@ -1774,49 +1774,42 @@ textarea:focus { border-color: var(--color-brand-primary); }
   font-size: 72px;
   letter-spacing: -0.02em;
 }
-/* Each letter */
+/* Each letter — GPU-only animation (transform + opacity), no layout shifts */
 .splash-letter {
   display: inline-block;
-  opacity: 0;
-  animation: letter-appear 0.5s ease-out forwards;
-  animation-delay: 0.1s; /* f and j appear immediately */
+  will-change: transform, opacity;
 }
-/* f (index 0): starts offset right (near j), moves left to final position */
+/* f (index 0): starts nudged right toward center, slides to final position */
 .splash-letter:nth-child(1) {
-  animation: letter-f 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.1s;
+  animation: letter-f 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 @keyframes letter-f {
-  0%   { opacity: 0; transform: translateX(20px) scale(0.9); }
-  30%  { opacity: 1; transform: translateX(20px) scale(1); }
-  100% { opacity: 1; transform: translateX(0) scale(1); }
+  0%   { opacity: 0; transform: translateX(55px); }
+  20%  { opacity: 1; transform: translateX(55px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
-/* j (index 3): starts offset left (near f), moves right to final position */
+/* j (index 4): starts nudged left toward center, slides to final position */
 .splash-letter:nth-child(4) {
-  animation: letter-j 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.1s;
+  animation: letter-j 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 @keyframes letter-j {
-  0%   { opacity: 0; transform: translateX(-20px) scale(0.9); }
-  30%  { opacity: 1; transform: translateX(-20px) scale(1); }
-  100% { opacity: 1; transform: translateX(0) scale(1); }
+  0%   { opacity: 0; transform: translateX(-55px); }
+  20%  { opacity: 1; transform: translateX(-55px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
-/* Hidden letters (a, m, a, m) — fade in as f and j spread apart */
+/* Hidden letters (a, m, a, m) — scale up from zero at their natural positions */
 .splash-hidden {
   opacity: 0;
-  max-width: 0;
-  overflow: hidden;
-  animation: letter-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: scale(0);
+  animation: letter-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-/* Stagger the reveals: a(1) m(2) then a(4) m(5) */
-.splash-letter:nth-child(2) { animation-delay: 0.6s; }  /* first a */
-.splash-letter:nth-child(3) { animation-delay: 0.7s; }  /* first m */
-.splash-letter:nth-child(5) { animation-delay: 0.8s; }  /* second a */
-.splash-letter:nth-child(6) { animation-delay: 0.9s; }  /* second m */
+.splash-letter:nth-child(2) { animation-delay: 0.5s; }  /* first a */
+.splash-letter:nth-child(3) { animation-delay: 0.6s; }  /* first m */
+.splash-letter:nth-child(5) { animation-delay: 0.7s; }  /* second a */
+.splash-letter:nth-child(6) { animation-delay: 0.8s; }  /* second m */
 @keyframes letter-reveal {
-  0%   { opacity: 0; max-width: 0; transform: scale(0.5); }
-  50%  { opacity: 0.7; }
-  100% { opacity: 1; max-width: 60px; transform: scale(1); }
+  0%   { opacity: 0; transform: scale(0); }
+  100% { opacity: 1; transform: scale(1); }
 }
 /* Tagline — Beat 3 */
 .splash-tagline-v4 {
