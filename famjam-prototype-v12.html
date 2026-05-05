@@ -1746,11 +1746,9 @@ textarea:focus { border-color: var(--color-brand-primary); }
 
 /* ====== v4 ADDITIONS ====== */
 
-/* ====== Animated splash screen — 4 synchronized stages ======
-   Stage 1 (0.0–0.8s):  Favicon box appears, "fj" sits centered
-   Stage 2 (0.8–1.6s):  Favicon expands wide, "fj" fades out
-   Stage 3 (1.6–2.4s):  Background fills brand color, "famjam" fades in white, favicon dissolves
-   Stage 4 (2.4–3.2s):  Tagline slides up, then CTA slides up
+/* ====== Animated splash screen — all elements load together ======
+   Everything fires at once with a single unified 1.8s animation.
+   Background fills, favicon expands + dissolves, text morphs, all in parallel.
 */
 #screen-splash {
   background: white;
@@ -1758,11 +1756,12 @@ textarea:focus { border-color: var(--color-brand-primary); }
   overflow: hidden;
   justify-content: center;
   align-items: center;
-  animation: splash-bg-fill 0.8s ease-in-out forwards;
-  animation-delay: 1.6s; /* Stage 3 start */
+  animation: splash-bg-fill 1.8s ease-in-out forwards;
 }
 @keyframes splash-bg-fill {
   0%   { background: white; }
+  45%  { background: white; }
+  75%  { background: var(--color-brand-primary); }
   100% { background: var(--color-brand-primary); }
 }
 .splash-v4 {
@@ -1774,26 +1773,22 @@ textarea:focus { border-color: var(--color-brand-primary); }
   align-items: center;
   position: relative;
 }
-/* Favicon box — Stage 1: appear, Stage 2: expand wide, Stage 3: dissolve */
+/* Favicon box — appears, expands, dissolves all in one animation */
 .splash-favicon {
   width: 96px; height: 96px;
   background: white;
   border-radius: 24px;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 8px 24px rgba(31, 53, 64, 0.08);
-  opacity: 0;
-  animation: favicon-appear 0.4s ease-out forwards, favicon-expand 1.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-  animation-delay: 0.2s, 0.8s; /* Stage 1 appear, then Stage 2 expand */
+  animation: favicon-lifecycle 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
   transform-origin: center;
 }
-@keyframes favicon-appear {
-  from { opacity: 0; transform: scale(0.8); }
-  to   { opacity: 1; transform: scale(1); }
-}
-@keyframes favicon-expand {
-  0%   { width: 96px; height: 96px; border-radius: 24px; background: white; box-shadow: 0 8px 24px rgba(31,53,64,0.08); }
-  50%  { width: 360px; height: 140px; border-radius: 40px; background: white; box-shadow: 0 20px 60px rgba(31,53,64,0.12); }
-  100% { width: 360px; height: 140px; border-radius: 40px; background: transparent; box-shadow: none; }
+@keyframes favicon-lifecycle {
+  0%   { width: 96px; height: 96px; border-radius: 24px; background: white; box-shadow: 0 8px 24px rgba(31,53,64,0.08); opacity: 0; transform: scale(0.8); }
+  15%  { width: 96px; height: 96px; border-radius: 24px; background: white; box-shadow: 0 8px 24px rgba(31,53,64,0.08); opacity: 1; transform: scale(1); }
+  45%  { width: 360px; height: 140px; border-radius: 40px; background: white; box-shadow: 0 20px 60px rgba(31,53,64,0.12); opacity: 1; }
+  75%  { width: 360px; height: 140px; border-radius: 40px; background: transparent; box-shadow: none; opacity: 0; }
+  100% { width: 360px; height: 140px; border-radius: 40px; background: transparent; box-shadow: none; opacity: 0; }
 }
 .splash-fj-stage {
   position: relative;
@@ -1813,35 +1808,32 @@ textarea:focus { border-color: var(--color-brand-primary); }
   position: absolute;
   white-space: nowrap;
 }
-/* "fj" — Stage 1: visible, Stage 2: fades out as favicon expands */
+/* "fj" — appears with favicon, exits as favicon expands */
 .splash-fj-initial {
   font-size: 56px;
-  opacity: 0;
-  animation: fj-appear 0.3s ease-out forwards, fj-exit 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-  animation-delay: 0.3s, 1.0s; /* appear with favicon, exit during Stage 2 */
+  animation: fj-lifecycle 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
-@keyframes fj-appear {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+@keyframes fj-lifecycle {
+  0%   { font-size: 56px; opacity: 0; transform: scale(0.8); }
+  15%  { font-size: 56px; opacity: 1; transform: scale(1); }
+  50%  { font-size: 68px; opacity: 0; transform: scale(1.3); }
+  100% { font-size: 68px; opacity: 0; transform: scale(1.3); }
 }
-@keyframes fj-exit {
-  0%   { font-size: 56px; opacity: 1; transform: scale(1); }
-  100% { font-size: 72px; opacity: 0; transform: scale(1.3); }
-}
-/* "famjam" — Stage 3: fades in, scales up, turns white as background fills */
+/* "famjam" — fades in as "fj" exits, turns white as background fills */
 .splash-fj-final {
   font-size: 48px;
   opacity: 0;
   color: var(--color-brand-primary);
-  animation: famjam-enter 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-  animation-delay: 1.6s; /* synced with Stage 3 bg fill */
+  animation: famjam-lifecycle 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
-@keyframes famjam-enter {
+@keyframes famjam-lifecycle {
   0%   { font-size: 48px; opacity: 0; color: var(--color-brand-primary); transform: scale(0.85); }
-  40%  { opacity: 1; color: var(--color-brand-primary); }
+  40%  { font-size: 48px; opacity: 0; color: var(--color-brand-primary); transform: scale(0.85); }
+  65%  { font-size: 72px; opacity: 1; color: var(--color-brand-primary); transform: scale(0.95); }
+  85%  { font-size: 84px; opacity: 1; color: white; transform: scale(1); }
   100% { font-size: 84px; opacity: 1; color: white; transform: scale(1); }
 }
-/* Tagline — Stage 4: slides up right after Stage 3 completes */
+/* Tagline — fades in during final phase */
 .splash-tagline-v4 {
   font-family: var(--font-product);
   font-weight: 500;
@@ -1850,8 +1842,8 @@ textarea:focus { border-color: var(--color-brand-primary); }
   margin-top: 32px;
   opacity: 0;
   letter-spacing: 0.01em;
-  animation: tagline-fade-in 0.5s ease-out forwards;
-  animation-delay: 2.5s; /* Stage 4 start */
+  animation: tagline-fade-in 0.6s ease-out forwards;
+  animation-delay: 1.5s;
   text-align: center;
   max-width: 260px;
   line-height: 1.4;
@@ -1860,14 +1852,14 @@ textarea:focus { border-color: var(--color-brand-primary); }
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-/* CTA — Stage 4: slides up shortly after tagline */
+/* CTA — appears right with tagline */
 .splash-cta-v4 {
   position: absolute;
   bottom: 40px; left: 24px; right: 24px;
   display: flex; flex-direction: column; gap: 8px;
   opacity: 0;
-  animation: cta-appear 0.5s ease-out forwards;
-  animation-delay: 2.8s; /* 0.3s after tagline starts */
+  animation: cta-appear 0.6s ease-out forwards;
+  animation-delay: 1.6s;
 }
 @keyframes cta-appear {
   from { opacity: 0; transform: translateY(12px); }
