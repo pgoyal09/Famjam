@@ -1785,11 +1785,11 @@ textarea:focus { border-color: var(--color-brand-primary); }
   animation-delay: 0s, 0.5s;
 }
 @keyframes letter-f-fade {
-  0%   { opacity: 0; transform: translateX(3px); }
-  100% { opacity: 1; transform: translateX(3px); }
+  0%   { opacity: 0; transform: translateX(0); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 @keyframes letter-f-slide {
-  0%   { opacity: 1; transform: translateX(3px); }
+  0%   { opacity: 1; transform: translateX(0); }
   100% { opacity: 1; transform: translateX(0); }
 }
 /* j (index 4): 0.5s fade in while holding position, then slides right */
@@ -1798,11 +1798,11 @@ textarea:focus { border-color: var(--color-brand-primary); }
   animation-delay: 0s, 0.5s;
 }
 @keyframes letter-j-fade {
-  0%   { opacity: 0; transform: translateX(-3px); }
-  100% { opacity: 1; transform: translateX(-3px); }
+  0%   { opacity: 0; transform: translateX(0); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 @keyframes letter-j-slide {
-  0%   { opacity: 1; transform: translateX(-3px); }
+  0%   { opacity: 1; transform: translateX(0); }
   100% { opacity: 1; transform: translateX(0); }
 }
 /* Hidden letters (a, m, a, m) — zero size initially so f+j sit centered together */
@@ -1820,7 +1820,7 @@ textarea:focus { border-color: var(--color-brand-primary); }
 @keyframes letter-reveal {
   0%   { opacity: 0; width: 0; }
   50%  { opacity: 0.7; }
-  100% { opacity: 1; width: 52px; }
+  100% { opacity: 1; width: 46px; }
 }
 /* Tagline — Beat 3 */
 .splash-tagline-v4 {
